@@ -1,0 +1,215 @@
+{
+    "users": {
+      "vellala_03": {
+        "name": "Vellala Harshith",
+        "age": 21,
+        "place": "Bengaluru",
+        "orders": [
+          "oid0001",
+          "oid0006",
+          "oid0007",
+          "oid0008"
+        ]
+      },
+      "vuru": {
+        "name": "Vinay",
+        "age": 24,
+        "place": "Eluru",
+        "orders": []
+      },
+      "blurryface_ksv": {
+        "name": "Srikar Ksv",
+        "age": 24,
+        "place": "Hyderabad",
+        "orders": [
+          "oid0002",
+          "oid0005"
+        ]
+      },
+      "vellala_04": {
+        "name": "Vellala Harshith",
+        "age": 21,
+        "place": "Bengaluru",
+        "orders": [
+          "oid0004"
+        ]
+      },
+      "pjk_05": {
+        "name": "Kowshik",
+        "age": 21,
+        "place": "Veluru",
+        "orders": []
+      },
+      "Ihyth_6": {
+        "name": "Ihyth",
+        "age": 21,
+        "place": "West Godavari",
+        "orders": []
+      }
+    },
+    "products": {
+      "wm_01": {
+        "pid": 1001,
+        "pName": "Washing Machine",
+        "price": 8000,
+        "quantity": 30,
+        "model": "front-load"
+      },
+      "tv_01": {
+        "pid": 1002,
+        "pName": "Television",
+        "price": 28000,
+        "quantity": 8,
+        "model": "smart-tv"
+      },
+      "fr_01": {
+        "pid": 1003,
+        "pName": "Refrigelator",
+        "price": 15000,
+        "quantity": 30,
+        "model": "double-door"
+      },
+      "lp_01": {
+        "pid": 1004,
+        "pName": "Laptop",
+        "price": 55000,
+        "quantity": 30,
+        "model": "i5,10th Gen"
+      },
+      "ps_01": {
+        "pid": 1005,
+        "pName": "Playstation",
+        "price": 12000,
+        "quantity": 29,
+        "model": "PS5"
+      },
+      "tl_01": {
+        "pid": 1006,
+        "pName": "Table",
+        "price": 1500,
+        "quantity": 30,
+        "model": "Wooden Table"
+      },
+      "dm_01": {
+        "pid": 1007,
+        "pName": "Dell Mouse",
+        "price": 850,
+        "quantity": 30,
+        "model": "Wireless Mouse"
+      },
+      "Dkw_01": {
+        "pid": 1008,
+        "pName": "Dell KeyBoard",
+        "price": 1250,
+        "quantity": 14,
+        "model": "Wireless KeyBoard"
+      }
+    },
+    "orders": {
+      "oid0001": {
+        "pid": 1001,
+        "pName": "Washing Machine",
+        "price": 8000,
+        "uid": "vellala_03",
+        "userName": "Vellala Harshith",
+        "address": "Allagadda",
+        "quantity": 2,
+        "total": 16000,
+        "orderStatus": "confirmed",
+        "deliveryDate": "30/11/2023",
+        "notes": "Please deliver product on time."
+      },
+      "oid0002": {
+        "pid": 1005,
+        "pName": "Playstation",
+        "price": 12000,
+        "uid": "blurryface_ksv",
+        "userName": "Srikar KSV",
+        "address": "Hyderabad",
+        "quantity": 1,
+        "total": 12000,
+        "orderStatus": "shipped",
+        "deliveryDate": "30/11/2023",
+        "notes": "Please deliver product on time."
+      },
+      "oid0003": {
+        "pid": 1004,
+        "pName": "Laptop",
+        "price": 55000,
+        "uid": "pjk_05",
+        "userName": "Kowshik PJ",
+        "address": "Veluru",
+        "quantity": 1,
+        "total": 55000,
+        "orderStatus": "Delivered",
+        "deliveryDate": "27/11/2023",
+        "notes": "Be Careful while delivering the Laptop."
+      },
+      "oid0004": {
+        "pid": 1006,
+        "pName": "Dell Mouse",
+        "price": 850,
+        "uid": "vellala_04",
+        "userName": "Harshith Vellala",
+        "address": "VAllagadda",
+        "quantity": 2,
+        "total": 1700,
+        "orderStatus": "Confirmed",
+        "deliveryDate": "30/11/2023",
+        "notes": "Leave order with security guard."
+      },
+      "oid0005": {
+        "pid": 1006,
+        "pName": "Dell Mouse",
+        "price": 850,
+        "uid": "blurryface_ksv",
+        "userName": "Srikar Ksv",
+        "address": "Hyderabad",
+        "quantity": 2,
+        "total": 1700,
+        "orderStatus": "Confirmed",
+        "deliveryDate": "30/11/2023",
+        "notes": "Leave order with security guard."
+      },
+      "oid0006": {
+        "pid": 1005,
+        "pName": "Playstation",
+        "price": 12000,
+        "uid": "vellala_03",
+        "userName": "Vellala Harshith",
+        "address": "Hyderabad",
+        "quantity": 1,
+        "total": 12000,
+        "orderStatus": "Shipped",
+        "deliveryDate": "30/11/2023",
+        "notes": "Deliver as soon as possible."
+      },
+      "oid0007": {
+        "pid": 1002,
+        "pName": "Television",
+        "price": 28000,
+        "uid": "vellala_03",
+        "userName": "Vellala Harshith",
+        "address": "Kurnool",
+        "quantity": 5,
+        "total": 140000,
+        "orderStatus": "Shipped",
+        "deliveryDate": "30/11/2023",
+        "notes": "Deliver as soon as possible."
+      },
+      "oid0008": {
+        "pid": 1002,
+        "pName": "Television",
+        "price": 28000,
+        "uid": "vellala_03",
+        "userName": "Vellala Harshith",
+        "address": "Kurnool",
+        "quantity": 2,
+        "orderStatus": "Shipped",
+        "deliveryDate": "30/11/2023",
+        "notes": "Deliver as soon as possible.",
+        "total": 56000
+      }
+    }
+  }
+  

@@ -1,4 +1,27 @@
 <%- include('partials/head', { additionalStyles: false }) %>
-    <%- include('partials/navbar') %>
-    <h1>All orders page</h1>
+<%- include('partials/navbar') %>
+<% if (Object.keys(orders).length === 0) { %>
+  <p>No orders available.</p>
+<% } else { %>
+  <h2>All Orders</h2>
+  <div class="container mt-4">
+    <div class="row">
+      <% Object.keys(orders).forEach(orderId => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Order ID: <%= orderId %></h5>
+              <p class="card-text">User ID: <%= orders[orderId].uid %></p>
+              <p class="card-text">Placed On: <%= orders[orderId].placedOn %></p>
+              <!-- Add more information based on your order structure -->
+              <a href="#" class="btn btn-primary" onclick="showMore('<%= orderId %>')">Show More</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+<% } %>
+
+
 <%- include('partials/footer') %>

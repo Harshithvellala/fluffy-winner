@@ -92,7 +92,75 @@ app.post("/prod/newprod", (req, res) => {
 app.get("/orders/allords", (req, res) => {
   const data = readDataBase();
   const orderData = data.orders;
-  res.render('allOrders',{od : orderData,name:'Orders'});
+  const duplicateData = 
+  {
+    "oid0002": {
+      "pid": 1005,
+      "pName": "Playstation",
+      "price": 12000,
+      "uid": "blurryface_ksv",
+      "userName": "Srikar KSV",
+      "address": "Hyderabad",
+      "did" : "D01_Vellala",
+      "dealer" : "Vellala Harshith",
+      "quantity": 1,
+      "total": 12000,
+      "orderStatus": "shipped",
+      "placedOn" : "27/11/2023",
+      "deliveryDate": "30/11/2023",
+      "notes": "Please deliver product on time."
+    },
+    "oid0003": {
+      "pid": 1005,
+      "pName": "Playstation",
+      "price": 12000,
+      "uid": "blurryface_ksv",
+      "userName": "Srikar KSV",
+      "address": "Hyderabad",
+      "did" : "D01_Vellala",
+      "dealer" : "Vellala Harshith",
+      "quantity": 1,
+      "total": 12000,
+      "orderStatus": "shipped",
+      "placedOn" : "27/11/2023",
+      "deliveryDate": "30/11/2023",
+      "notes": "Please deliver product on time."
+    },
+    "oid0004": {
+      "pid": 1005,
+      "pName": "Playstation",
+      "price": 12000,
+      "uid": "blurryface_ksv",
+      "userName": "Srikar KSV",
+      "address": "Hyderabad",
+      "did" : "D01_Vellala",
+      "dealer" : "Vellala Harshith",
+      "quantity": 1,
+      "total": 12000,
+      "orderStatus": "shipped",
+      "placedOn" : "27/11/2023",
+      "deliveryDate": "30/11/2023",
+      "notes": "Please deliver product on time."
+    },
+    "oid0005": {
+      "pid": 1005,
+      "pName": "Playstation",
+      "price": 12000,
+      "uid": "blurryface_ksv",
+      "userName": "Srikar KSV",
+      "address": "Hyderabad",
+      "did" : "D01_Vellala",
+      "dealer" : "Vellala Harshith",
+      "quantity": 1,
+      "total": 12000,
+      "orderStatus": "shipped",
+      "placedOn" : "27/11/2023",
+      "deliveryDate": "30/11/2023",
+      "notes": "Please deliver product on time."
+    }
+  }
+  
+  res.render('allOrders',{od : orderData,name:'Orders',orders: duplicateData});
 });
 
 app.get("/orders/:oid", (req, res) => {

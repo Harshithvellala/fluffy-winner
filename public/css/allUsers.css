@@ -1,12 +1,14 @@
 body{
+    background-color: #FFC600;
+}
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    background-color: #FFC600;
+    margin-top: 20px;
 }
 .table-container{
-    width: 80%;
+    width: 100%;
 }
 table{
     width: 100%;

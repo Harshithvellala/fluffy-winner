@@ -1,5 +1,4 @@
 const fs = require("fs");
-const readline = require("readline");
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -27,22 +26,19 @@ function readDataBase() {
 }
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs",{name:'Home Page'});
 });
 
 app.get("/users/allusers", (req, res) => {
   const usersData = readDataBase().users;
-  // res.send(usersData);
-  res.render('allUsers',{usersData});
+  res.render('allUsers',{usersData,name:'Users'});
 });
 
 app.get("/users/:username", (req, res) => {
   const usersData = readDataBase().users;
   const userName = req.params.username;
   const details = usersData[userName];
-  // console.log(details);
   if (details) {
-    // res.send(details);
     res.render('queryParams',{details: JSON.stringify(details),uName: userName});
   } else {
     res.send(`No data found for username: ${userName}`);
@@ -66,8 +62,7 @@ app.post("/users/addusr", (req, res) => {
 app.get("/prods/allprods", (req, res) => {
   const data = readDataBase();
   const prodData = data.products;
-  res.render('allProd',{data : prodData});
-  // res.send(prodData);
+  res.render('allProd',{data : prodData,name:'Products'});
 });
 
 app.get("/prod/:prodid", (req, res) => {
@@ -97,15 +92,13 @@ app.post("/prod/newprod", (req, res) => {
 app.get("/orders/allords", (req, res) => {
   const data = readDataBase();
   const orderData = data.orders;
-  // res.render('allOrders',{od : orderData});
-  res.send(orderData);
+  res.render('allOrders',{od : orderData,name:'Orders'});
 });
 
 app.get("/orders/:oid", (req, res) => {
   const data = readDataBase().orders;
   const oid = req.params.oid;
   const oidData = data[oid];
-  console.log(oidData);
   if (oidData) {
     res.send(oidData);
   } else {
@@ -133,9 +126,6 @@ app.post("/orders/placeorder", (req, res) => {
       res.send("Requesting quantity exceeds available quantity");
     } else {
       dbData.products[pid].quantity = avilQuatntity - orderQuantity;
-      // console.log(
-      //   (dbData.products[pid].quantity = avilQuatntity - orderQuantity)
-      // );
       fs.writeFileSync(databasePath, JSON.stringify(dbData, null, 2), "utf8");
       res.send(`Order with Id: ${orderId} placed Successfully.`);
     }

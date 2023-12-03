@@ -1,38 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
-    <link rel="stylesheet" href="/styles/allUsers.css">
-</head>
-<body>
-
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Place</th>
-                    <th>Orders</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for(let usd in usersData) { %>
+<%- include('partials/head', { additionalStyles: true }) %>
+    <%- include('partials/navbar') %>
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
                     <tr>
-                        <td><%= usersData[usd].name %></td>
-                        <td><%= usersData[usd].age %></td>
-                        <td><%= usersData[usd].place %></td>
-                        <% if (usersData[usd].orders.length ===0){ %>
-                            <td>No orders found</td>
-                        <% }else{ %>
-                            <td><%= usersData[usd].orders %></td>
-                        <% } %>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Place</th>
+                        <th>Orders</th>
                     </tr>
-                <% } %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% for(let usd in usersData) { %>
+                        <tr>
+                            <td><%= usersData[usd].name %></td>
+                            <td><%= usersData[usd].age %></td>
+                            <td><%= usersData[usd].place %></td>
+                            <% if (usersData[usd].orders.length ===0){ %>
+                                <td>No orders found</td>
+                            <% }else{ %>
+                                <td><%= usersData[usd].orders %></td>
+                            <% } %>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
-</body>
-</html>
+<%- include('partials/footer') %>

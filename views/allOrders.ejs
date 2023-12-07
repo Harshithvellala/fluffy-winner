@@ -26,12 +26,11 @@
     <button class="" id="close-btn" onclick="closePopup()">&times;</button>
   </div>
 </div>
-<!-- action="/orders/" method="get" -->
 <div class="fs-container">
-  <form id="myForm">
+  <form id="myForm" method="get">
     <input type="text" id="filter" name="filter" placeholder="Enter order Id">
     <button type="submit">Search</button>
-    
+    <button>Filter</button>
   </form>
 </div>
 <script>
@@ -61,10 +60,5 @@
     document.getElementById('popup').style.display = 'none';
   }
 
-  document.getElementById('myForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    const filter = document.getElementById('filter').value;
-    window.location.href = '/orders/' + filter;
-  });
 </script>
 <%- include('partials/footer') %>

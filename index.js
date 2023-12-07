@@ -95,24 +95,23 @@ app.post("/prod/newprod", (req, res) => {
 
 app.get("/orders/allords", (req, res) => {
   const data = readDataBase();
+  const orders = data.orders;
   const orderData = data.orders;
-  res.render('allOrders',{od : orderData,name:'Orders',orders: orderData, htype : 'All Orders'});
-});
-
-app.get("/orders/:filter",(req,res) =>{
-  const orders = readDataBase().orders;
-  const filter = req.params.filter;
-  const fil = [];
-  for (ord in orders) {
-    if(orders[ord].orderStatus === filter){
-      fil.push(ord);
-    }
+  if(!req.query.filter){
+    res.render('allOrders',{od : orderData,name:'Orders',orders: orderData, htype : 'All Orders'});
+  }else {
+      const fil = [];
+      for (ord in orders) {
+        if(orders[ord].orderStatus === req.query.filter){
+          fil.push(ord);
+        }
+      }
+      const newOrdData = {}
+      fil.forEach((ele)=>{
+        newOrdData[ele] = orders[ele];
+      });
+      res.render('allOrders',{name:'Orders',orders: newOrdData,htype : `${req.query.filter} Orders`});
   }
-  const newOrdData = {}
-  fil.forEach((ele)=>{
-    newOrdData[ele] = orders[ele];
-  });
-  res.render('allOrders',{name:'Orders',orders: newOrdData,htype : `${filter} Orders`});
 });
 
 app.get("/orders/:oid", (req, res) => {

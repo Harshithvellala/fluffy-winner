@@ -3,6 +3,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const databasePath = "database.json";
+const moment = require('moment-timezone');
+const exp = require("constants");
+
+
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -92,75 +96,23 @@ app.post("/prod/newprod", (req, res) => {
 app.get("/orders/allords", (req, res) => {
   const data = readDataBase();
   const orderData = data.orders;
-  const duplicateData = 
-  {
-    "oid0002": {
-      "pid": 1005,
-      "pName": "Playstation",
-      "price": 12000,
-      "uid": "blurryface_ksv",
-      "userName": "Srikar KSV",
-      "address": "Hyderabad",
-      "did" : "D01_Vellala",
-      "dealer" : "Vellala Harshith",
-      "quantity": 1,
-      "total": 12000,
-      "orderStatus": "shipped",
-      "placedOn" : "27/11/2023",
-      "deliveryDate": "30/11/2023",
-      "notes": "Please deliver product on time."
-    },
-    "oid0003": {
-      "pid": 1005,
-      "pName": "Playstation",
-      "price": 12000,
-      "uid": "blurryface_ksv",
-      "userName": "Srikar KSV",
-      "address": "Hyderabad",
-      "did" : "D01_Vellala",
-      "dealer" : "Vellala Harshith",
-      "quantity": 1,
-      "total": 12000,
-      "orderStatus": "shipped",
-      "placedOn" : "27/11/2023",
-      "deliveryDate": "30/11/2023",
-      "notes": "Please deliver product on time."
-    },
-    "oid0004": {
-      "pid": 1005,
-      "pName": "Playstation",
-      "price": 12000,
-      "uid": "blurryface_ksv",
-      "userName": "Srikar KSV",
-      "address": "Hyderabad",
-      "did" : "D01_Vellala",
-      "dealer" : "Vellala Harshith",
-      "quantity": 1,
-      "total": 12000,
-      "orderStatus": "shipped",
-      "placedOn" : "27/11/2023",
-      "deliveryDate": "30/11/2023",
-      "notes": "Please deliver product on time."
-    },
-    "oid0005": {
-      "pid": 1005,
-      "pName": "Playstation",
-      "price": 12000,
-      "uid": "blurryface_ksv",
-      "userName": "Srikar KSV",
-      "address": "Hyderabad",
-      "did" : "D01_Vellala",
-      "dealer" : "Vellala Harshith",
-      "quantity": 1,
-      "total": 12000,
-      "orderStatus": "shipped",
-      "placedOn" : "27/11/2023",
-      "deliveryDate": "30/11/2023",
-      "notes": "Please deliver product on time."
+  res.render('allOrders',{od : orderData,name:'Orders',orders: orderData, htype : 'All Orders'});
+});
+
+app.get("/orders/:filter",(req,res) =>{
+  const orders = readDataBase().orders;
+  const filter = req.params.filter;
+  const fil = [];
+  for (ord in orders) {
+    if(orders[ord].orderStatus === filter){
+      fil.push(ord);
     }
   }
-  
-  res.render('allOrders',{od : orderData,name:'Orders',orders: duplicateData});
+  const newOrdData = {}
+  fil.forEach((ele)=>{
+    newOrdData[ele] = orders[ele];
+  });
+  res.render('allOrders',{name:'Orders',orders: newOrdData,htype : `${filter} Orders`});
 });
 
 app.get("/orders/:oid", (req, res) => {
@@ -194,6 +146,8 @@ app.post("/orders/placeorder", (req, res) => {
       res.send("Requesting quantity exceeds available quantity");
     } else {
       dbData.products[pid].quantity = avilQuatntity - orderQuantity;
+      dbData.orders[orderId].placedOn = createdAt;
+      dbData.orders[orderId].deliveryDate = expected;
       fs.writeFileSync(databasePath, JSON.stringify(dbData, null, 2), "utf8");
       res.send(`Order with Id: ${orderId} placed Successfully.`);
     }
@@ -220,3 +174,12 @@ function availableQuant(prodId) {
   const aQuant = dbData.products[prod_id].quantity;
   return aQuant;
 }
+
+
+function placedOn(){
+  let placedOn = moment.tz('Asia/kolkata').format('YYYY-MM-DD HH:mm:ss');
+  let edd = moment(placedOn).add(5, 'd').format('DD-MM-YYYY');
+  return [placedOn,edd];
+}
+ let dates, createdAt, expected;
+ [createdAt,expected,...dates] = placedOn();

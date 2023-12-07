@@ -1,9 +1,9 @@
-<%- include('partials/head', { additionalStyles: false }) %>
+<%- include('partials/head', { additionalStyles: '/css/allOrders.css'}) %>
 <%- include('partials/navbar') %>
 <% if (Object.keys(orders).length === 0) { %>
-  <p>No orders available.</p>
+  <h1>No orders available.</h1>
 <% } else { %>
-  <h2>All Orders</h2>
+  <h2><%= htype %></h2>
   <div class="container mt-4">
     <div class="row">
       <% Object.keys(orders).forEach(orderId => { %>
@@ -11,10 +11,9 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Order ID: <%= orderId %></h5>
-              <p class="card-text">User ID: <%= orders[orderId].uid %></p>
+              <p class="card-text">User Name: <%= orders[orderId].userName %></p>
               <p class="card-text">Placed On: <%= orders[orderId].placedOn %></p>
-              <!-- Add more information based on your order structure -->
-              <a href="#" class="btn btn-primary" onclick="showMore('<%= orderId %>')">Show More</a>
+              <a  class="btn btn-primary" id="showMoreBtn" onclick="showMore('<%= orderId %>')">Show More</a>
             </div>
           </div>
         </div>
@@ -22,6 +21,50 @@
     </div>
   </div>
 <% } %>
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+    <button class="" id="close-btn" onclick="closePopup()">&times;</button>
+  </div>
+</div>
+<!-- action="/orders/" method="get" -->
+<div class="fs-container">
+  <form id="myForm">
+    <input type="text" id="filter" name="filter" placeholder="Enter order Id">
+    <button type="submit">Search</button>
+    
+  </form>
+</div>
+<script>
+  function showMore(oid){
+    const orderDetails = JSON.parse('<%- JSON.stringify(orders) %>')[oid];
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('popup').style.display = 'block';
+    popup.innerHTML = `
+        <h3>Order ID: ${oid}</h3>
+        <hr>
+        <p>User ID: ${orderDetails.uid}</p>
+        <p>Placed On: ${orderDetails.placedOn}</p>
+        <p>Product Name: ${orderDetails.pName}</p>
+        <p>Price: ${orderDetails.price}</p>
+        <p>Address: ${orderDetails.address}</p>
+        <p>Quantity: ${orderDetails.quantity}</p>
+        <p>Total: ${orderDetails.total}</p>
+        <p>Order Status: ${orderDetails.orderStatus}</p>
+        <p>Delivery Date: ${orderDetails.deliveryDate}</p>
+        <p>Notes: ${orderDetails.notes}</p>
+        <button id="close-btn" onclick="closePopup()">&times;</button>
+      `;
+    
+  };
+  function closePopup() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('popup').style.display = 'none';
+  }
 
-
+  document.getElementById('myForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const filter = document.getElementById('filter').value;
+    window.location.href = '/orders/' + filter;
+  });
+</script>
 <%- include('partials/footer') %>

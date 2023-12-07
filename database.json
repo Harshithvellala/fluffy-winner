@@ -52,7 +52,9 @@
       "name": "Vellala Joshi",
       "age": 18,
       "place": "Kurnool",
-      "orders": []
+      "orders": [
+        "oid0010"
+      ]
     }
   },
   "products": {
@@ -102,7 +104,7 @@
       "pid": 1007,
       "pName": "Dell Mouse",
       "price": 850,
-      "quantity": 30,
+      "quantity": 28,
       "model": "Wireless Mouse"
     },
     "Dkw_01": {
@@ -131,6 +133,7 @@
       "quantity": 2,
       "total": 16000,
       "orderStatus": "confirmed",
+      "placedOn": "25/11/2023",
       "deliveryDate": "30/11/2023",
       "notes": "Please deliver product on time."
     },
@@ -145,6 +148,7 @@
       "total": 12000,
       "orderStatus": "shipped",
       "deliveryDate": "30/11/2023",
+      "placedOn": "25/11/2023",
       "notes": "Please deliver product on time."
     },
     "oid0003": {
@@ -157,6 +161,7 @@
       "quantity": 1,
       "total": 55000,
       "orderStatus": "Delivered",
+      "placedOn": "25/11/2023",
       "deliveryDate": "27/11/2023",
       "notes": "Be Careful while delivering the Laptop."
     },
@@ -170,6 +175,7 @@
       "quantity": 2,
       "total": 1700,
       "orderStatus": "Confirmed",
+      "placedOn": "25/11/2023",
       "deliveryDate": "30/11/2023",
       "notes": "Leave order with security guard."
     },
@@ -183,6 +189,7 @@
       "quantity": 2,
       "total": 1700,
       "orderStatus": "Confirmed",
+      "placedOn": "25/11/2023",
       "deliveryDate": "30/11/2023",
       "notes": "Leave order with security guard."
     },
@@ -196,6 +203,7 @@
       "quantity": 1,
       "total": 12000,
       "orderStatus": "Shipped",
+      "placedOn": "25/11/2023",
       "deliveryDate": "30/11/2023",
       "notes": "Deliver as soon as possible."
     },
@@ -209,6 +217,7 @@
       "quantity": 5,
       "total": 140000,
       "orderStatus": "Shipped",
+      "placedOn": "25/11/2023",
       "deliveryDate": "30/11/2023",
       "notes": "Deliver as soon as possible."
     },
@@ -221,6 +230,7 @@
       "address": "Kurnool",
       "quantity": 2,
       "orderStatus": "Shipped",
+      "placedOn": "25/11/2023",
       "deliveryDate": "30/11/2023",
       "notes": "Deliver as soon as possible.",
       "total": 56000
@@ -234,9 +244,24 @@
       "address": "WG",
       "quantity": 5,
       "orderStatus": "Confirmed",
+      "placedOn": "25/11/2023",
       "deliveryDate": "03/12/2023",
       "notes": "Deliver as soon as possible.",
       "total": 7500
+    },
+    "oid0010": {
+      "pid": 1007,
+      "pName": "Dell Mouse",
+      "price": 850,
+      "uid": "Vj_7",
+      "userName": "Vellala Joshi",
+      "address": "Kurnool",
+      "quantity": 2,
+      "orderStatus": "Confirmed",
+      "notes": "Please deliver product on time",
+      "total": 1700,
+      "placedOn": "2023-12-05 18:15:15",
+      "deliveryDate": "10-12-2023"
     }
   }
 }

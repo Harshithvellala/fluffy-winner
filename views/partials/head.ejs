@@ -8,7 +8,13 @@
     <script src="/js/bootstrap.min.js"></script>
     <title><%= name %></title>
     <% if (additionalStyles) { %>
-        <link rel="stylesheet" href="/css/allUsers.css">
+        <link rel="stylesheet" href="<%= additionalStyles %>">
     <% } %>
+    <style>
+      body {padding-bottom: 50px;margin-bottom: 10px;}
+      .footer{margin-top: 10px;}
+
+
+    </style>
 </head>
 <body>

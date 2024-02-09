@@ -1,5 +1,57 @@
-<%- include('partials/head',{ additionalStyles: false }) %>
-    <%- include('partials/navbar') %>
-    <h1>Products</h1>
-    <p><%=data['tl_01'] %></p>
+<%- include('partials/head', { additionalStyles: '/css/allProd.css'}) %>
+<%- include('partials/navbar') %>
+<div class="fs-container">
+  <form id="myForm" method="get">
+    <input type="text" id="filter" name="filter" placeholder="Enter Product Id or Name">
+    <button type="submit">Search</button>
+  </form>
+</div>
+<% if (Object.keys(products).length === 0) { %>
+  <h1>No Products available.</h1>
+<% } else { %>
+  <h2><%= htype %></h2>
+  <div class="container mt-4">
+    <div class="row">
+      <% Object.keys(products).forEach(productId => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Product ID: <%= productId %></h5>
+              <p class="card-text">Product Name: <%= products[productId].pName %></p>
+              <p class="card-text">price: <%= products[productId].price %></p>
+              <a  class="btn btn-primary" id="showMoreBtn" onclick="showMore('<%= productId %>')">Show More</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+<% } %>
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+    <button class="" id="close-btn" onclick="closePopup()">&times;</button>
+  </div>
+</div>
+<script>
+  function showMore(pid){
+    const prodDetails = JSON.parse('<%- JSON.stringify(products) %>')[pid];
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('popup').style.display = 'block';
+    popup.innerHTML = `
+        <h3>Product Id: ${pid}</h3>
+        <hr>
+        <p>Product Name: ${prodDetails.pName}</p>
+        <p>Price: ${prodDetails.price}</p>
+        <p>Model: ${prodDetails.model}</p>
+        <p>Available Quantity: ${prodDetails.quantity}</p>
+        <button id="close-btn" onclick="closePopup()">&times;</button>
+      `;
+    
+  };
+  function closePopup() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('popup').style.display = 'none';
+  }
+
+</script>
 <%- include('partials/footer') %>

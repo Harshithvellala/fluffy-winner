@@ -1,5 +1,12 @@
 <%- include('partials/head', { additionalStyles: '/css/allOrders.css'}) %>
 <%- include('partials/navbar') %>
+<div class="fs-container">
+  <form id="myForm" method="get">
+  <label for="filter">Search By Id, Product Name, UserName, Place on and Orderstatus:</label>
+    <input type="text" id="filter" name="filter" placeholder="">
+    <button type="submit">Search</button>
+  </form>
+</div>
 <% if (Object.keys(orders).length === 0) { %>
   <h1>No orders available.</h1>
 <% } else { %>
@@ -25,13 +32,6 @@
   <div class="popup" id="popup">
     <button class="" id="close-btn" onclick="closePopup()">&times;</button>
   </div>
-</div>
-<div class="fs-container">
-  <form id="myForm" method="get">
-    <input type="text" id="filter" name="filter" placeholder="Enter order Id">
-    <button type="submit">Search</button>
-    <button>Filter</button>
-  </form>
 </div>
 <script>
   function showMore(oid){

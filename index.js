@@ -66,7 +66,26 @@ app.post("/users/addusr", (req, res) => {
 app.get("/prods/allprods", (req, res) => {
   const data = readDataBase();
   const prodData = data.products;
-  res.render('allProd',{data : prodData,name:'Products'});
+  if(!req.query.filter){
+    // od : orders,
+    res.render('allProd',{name:'Products',products: prodData, htype : 'All Products'});
+  }else {
+      let searchKey  = req.query.filter;
+      const fil = [];
+      // console.log(req.query.filter);
+      // ord -> prod, orders -> prodData
+      for (let prod in prodData) {
+        if(prod === searchKey || 
+           prodData[prod].pName ===searchKey){
+          fil.push(prod);
+        }
+      }
+      const newProdData = {}
+      fil.forEach((ele)=>{
+        newProdData[ele] = prodData[ele];
+      });
+      res.render('allProd',{name:'Products',products: newProdData, htype : 'All Products'});
+  }
 });
 
 app.get("/prod/:prodid", (req, res) => {
@@ -96,13 +115,19 @@ app.post("/prod/newprod", (req, res) => {
 app.get("/orders/allords", (req, res) => {
   const data = readDataBase();
   const orders = data.orders;
-  const orderData = data.orders;
   if(!req.query.filter){
-    res.render('allOrders',{od : orderData,name:'Orders',orders: orderData, htype : 'All Orders'});
+    // od : orders,
+    res.render('allOrders',{name:'Orders',orders: orders, htype : 'All Orders'});
   }else {
+      let searchKey  = req.query.filter;
       const fil = [];
+      // console.log(req.query.filter);
       for (ord in orders) {
-        if(orders[ord].orderStatus === req.query.filter){
+        if(orders[ord].orderStatus ===searchKey || 
+           ord === searchKey || 
+           orders[ord].pName ===searchKey || 
+           orders[ord].userName === searchKey || 
+           orders[ord].placedOn === searchKey){
           fil.push(ord);
         }
       }
@@ -110,6 +135,7 @@ app.get("/orders/allords", (req, res) => {
       fil.forEach((ele)=>{
         newOrdData[ele] = orders[ele];
       });
+      // console.log(newOrdData);
       res.render('allOrders',{name:'Orders',orders: newOrdData,htype : `${req.query.filter} Orders`});
   }
 });
@@ -176,9 +202,11 @@ function availableQuant(prodId) {
 
 
 function placedOn(){
-  let placedOn = moment.tz('Asia/kolkata').format('YYYY-MM-DD HH:mm:ss');
+  let placedOn = moment.tz('Asia/kolkata').format('YYYY-MM-DD');
   let edd = moment(placedOn).add(5, 'd').format('DD-MM-YYYY');
   return [placedOn,edd];
 }
+
+
  let dates, createdAt, expected;
  [createdAt,expected,...dates] = placedOn();
